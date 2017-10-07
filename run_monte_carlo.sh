@@ -9,6 +9,8 @@ TRUE_RES=0.33333
 
 N_WORKERS=1
 
+#(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
+#sudo cp bin/* /usr/bin
 
 function lead_zero {
 	echo $1 | sed -e 's/^\./0./' -e 's/^-\./-0./'
