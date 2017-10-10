@@ -1,13 +1,13 @@
-# !/usr/bin/sh
+# !/usr/bin/bash
 
 A=0
 B=1
 MAX=0
 MIN=1
-RUNS=1000
+RUNS=100
 TRUE_RES=0.33333
 
-N_WORKERS=1
+N_WORKERS=4
 
 #(wget -O - pi.dk/3 || curl pi.dk/3/ || fetch -o - http://pi.dk/3) | bash
 #sudo cp bin/* /usr/bin
@@ -29,10 +29,10 @@ done
 
 if [ -z "$1" ] 
 	then
-		RES=`parallel --no-notice -a .tmp --colsep ' ' ./main {}`
+		RES=`parallel --no-notice -a .tmp --colsep ' ' ./cacl_monte_carlo.sh {}`
 	else
 		scp main ubuntu@ec2-34-207-99-68.compute-1.amazonaws.com:~/
-		RES=`parallel --no-notice -S $1 -a .tmp --colsep ' ' ./main {}`
+		RES=`parallel --no-notice -S $1 -a .tmp --colsep ' ' ./cacl_monte_carlo.sh {}`
 fi
 
 RES=`echo $RES | tr ' ' '\n' | awk '{s+=$1} END {print s}'`
