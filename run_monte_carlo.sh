@@ -31,7 +31,7 @@ if [ -z "$1" ]
 	then
 		RES=`parallel --no-notice -a .tmp --colsep ' ' ./cacl_monte_carlo.sh {}`
 	else
-		scp main ubuntu@ec2-34-207-99-68.compute-1.amazonaws.com:~/
+		scp cacl_monte_carlo.sh $1:~/
 		RES=`parallel --no-notice -S $1 -a .tmp --colsep ' ' ./cacl_monte_carlo.sh {}`
 fi
 
